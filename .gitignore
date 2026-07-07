@@ -1,0 +1,9 @@
+node_modules
+.next
+dist
+*.log
+
+# Sekrety — NIGDY nie commitujemy prawdziwych kluczy
+.env
+.env.local
+.env*.local

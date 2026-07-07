@@ -1,0 +1,125 @@
+:root {
+  --bg: #0b1020;
+  --card: #151d31;
+  --panel2: #1e2740;
+  --text: #e6edf7;
+  --muted: #93a3bd;
+  --border: #27324c;
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --link: #a5b4fc;
+  --danger: #ef4444;
+  --ok: #34d399;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1100px 550px at 85% -10%, rgba(99,102,241,.16), transparent 60%),
+    linear-gradient(135deg, #0a0f1e, #12112b);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.muted { color: var(--muted); }
+.small { font-size: .82rem; }
+.empty { text-align: center; padding: 1.5rem; }
+code { background: #0b1020; padding: .1rem .4rem; border-radius: 4px; font-size: .85em; }
+
+/* Nawigacja */
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+  padding: .9rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: rgba(11,16,32,.7);
+  backdrop-filter: blur(8px);
+  position: sticky; top: 0; z-index: 10;
+}
+.brand { font-weight: 800; font-size: 1.15rem; color: var(--text); }
+.brand:hover { text-decoration: none; }
+.dot {
+  display: inline-block; width: .55rem; height: .55rem; border-radius: 999px;
+  background: var(--muted); margin-right: .3rem; vertical-align: middle;
+}
+.dot.on { background: var(--ok); box-shadow: 0 0 0 3px rgba(52,211,153,.18); }
+.dot.off { background: var(--danger); }
+.who { color: var(--muted); font-size: .85rem; }
+
+.container { max-width: 760px; margin: 0 auto; padding: 1.6rem 1.25rem 3rem; }
+
+/* Karta / formularze */
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem; }
+.narrow { max-width: 420px; margin: 1.5rem auto; }
+label { display: block; margin-bottom: .8rem; color: var(--muted); font-size: .9rem; }
+.input {
+  width: 100%;
+  margin-top: .3rem;
+  padding: .6rem .7rem;
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: .95rem;
+}
+.input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+.input.grow { flex: 1; margin-top: 0; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+  background: var(--accent); color: #fff; text-decoration: none;
+  padding: .6rem 1.1rem; border: 1px solid transparent; border-radius: 10px;
+  font-weight: 700; font-size: .95rem; cursor: pointer;
+}
+.btn:hover { background: var(--accent-hover); text-decoration: none; }
+.btn:disabled { opacity: .6; cursor: default; }
+.btn.full { width: 100%; }
+.btn.sm { padding: .35rem .7rem; font-size: .85rem; }
+.btn.ghost { background: transparent; color: var(--text); border-color: var(--border); }
+.btn.ghost:hover { border-color: var(--accent); background: rgba(99,102,241,.08); }
+
+.row { display: flex; gap: .6rem; align-items: center; margin: 1rem 0; flex-wrap: wrap; }
+
+.banner { padding: .7rem .9rem; border-radius: 10px; margin: .8rem 0; font-size: .9rem; }
+.banner.error { background: rgba(239,68,68,.12); border: 1px solid #ef4444; color: #fecaca; }
+.banner.info  { background: rgba(52,211,153,.12); border: 1px solid #34d399; color: #bbf7d0; }
+
+/* ── Czat ─────────────────────────────────────────────────────────────────── */
+.chat-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.chat-head h1 { margin: 0 0 .2rem; font-size: 1.5rem; }
+
+/* Przewijane okno wiadomości */
+.messages {
+  height: 60vh; min-height: 320px;
+  overflow-y: auto;
+  display: flex; flex-direction: column; gap: .55rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* Pojedynczy dymek */
+.msg { max-width: 78%; padding: .5rem .75rem; border-radius: 14px; line-height: 1.4; }
+.msg .msg-nick { display: block; font-size: .72rem; font-weight: 800; letter-spacing: .02em; margin-bottom: .15rem; opacity: .9; }
+.msg .msg-text { white-space: pre-wrap; word-break: break-word; }
+.msg .msg-time { display: block; font-size: .66rem; opacity: .55; margin-top: .2rem; }
+
+/* Cudze wiadomości — po lewej */
+.msg.other { align-self: flex-start; background: var(--panel2); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+.msg.other .msg-nick { color: var(--link); }
+
+/* Moje wiadomości — po prawej, w kolorze akcentu */
+.msg.mine { align-self: flex-end; background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+.msg.mine .msg-nick { color: rgba(255,255,255,.85); }
+
+.chat-form { display: flex; gap: .6rem; align-items: center; }
+.chat-form .input { margin-top: 0; }
+.counter { text-align: right; }
